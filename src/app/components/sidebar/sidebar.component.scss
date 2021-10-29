@@ -1,0 +1,36 @@
+.sidebar {
+    background: #f6f8fa;
+    border: 1px solid #d8dee4;
+    height: 100vh;
+
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        a {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            border-bottom: 1px solid #d8dee4;
+            .icon-star {
+                position: absolute;
+                bottom: 20px;
+                right: 50px;
+                color: orange;
+            }
+            &.active {
+                border-left: 5px solid red;
+                background: #fff;
+            }
+        }
+    }
+    &__search {
+        padding: 20px 10px;
+        text-align: center;
+        input {
+            padding: 10px 20px 10px 30px;
+            border-radius: 4px;
+            border: 1px solid #d8dee4;
+        }
+    }
+}

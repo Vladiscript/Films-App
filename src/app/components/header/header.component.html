@@ -1,0 +1,15 @@
+<header class="header">
+    <div class="header__wrapper">
+        <div class="header__logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/512px-Angular_full_color_logo.svg.png"
+                alt="logo">
+        </div>
+        <h1 class="header__title">
+            {{title}}
+        </h1>
+        <div class="header__theme">
+            <span>Theme:</span>
+            <button (click)="onToggle()" class="theme-btn">{{dark ? 'Light': 'Dark'}}</button>
+        </div>
+    </div>
+</header>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Films-app';
+  darkTheme: boolean
+  constructor(private localStorageService: LocalStorageService) { }
+  toggleTheme() {
+    this.darkTheme = !this.darkTheme
+    this.localStorageService.setTheme(this.darkTheme)
+  }
+  ngOnInit(): void {
+    this.darkTheme = this.localStorageService.getTheme()
+  }
 }

@@ -1,1 +1,146 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+* {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus,
+:active {
+    outline: none;
+}
+a:focus,
+a:active {
+    outline: none;
+}
+aside,
+nav,
+footer,
+header,
+section {
+    display: block;
+}
+html {
+    font-size: 16px;
+}
+html,
+body {
+    height: 100%;
+}
+body {
+    line-height: 1;
+    margin: 0;
+    font-family: "Lato", sans-serif;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+input,
+button,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+input::-ms-clear {
+    display: none;
+}
+button {
+    cursor: pointer;
+    background-color: inherit;
+}
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+a,
+a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+ul li {
+    list-style: none;
+}
+img {
+    vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.page-wrapper {
+    background: #fff;
+    &.dark {
+        background: #000;
+        color: #c9d1d9;
+
+        .sidebar {
+            background: #0d1117;
+            border: 1px solid #21262d;
+            .sidebar__search {
+                input {
+                    background: black;
+                    border: 1px solid #21262d;
+                }
+            }
+            .sidebar__nav {
+                a {
+                    border-bottom: 1px solid #21262d;
+                    &.active {
+                        background: #000;
+                    }
+                }
+            }
+        }
+        .main {
+            .content {
+                background: #000;
+                border-right: 1px solid #21262d;
+            }
+        }
+        .header {
+            .header__theme {
+                .theme-btn {
+                    background: #fff;
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+.main {
+    display: flex;
+    max-width: 1350px;
+    padding: 0 15px;
+    margin: 0 auto;
+
+    .content {
+        background: #f6f8fa;
+        border-right: 1px solid #d8dee4;
+        width: 80%;
+        height: 100vh;
+    }
+}
