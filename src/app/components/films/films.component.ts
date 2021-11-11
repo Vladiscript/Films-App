@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { Film, View } from 'src/app/Types';
+import { FilmsService } from 'src/app/services/films.service';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-films',
@@ -8,18 +13,70 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class FilmsComponent implements OnInit {
 
-  constructor(private localStorageService: LocalStorageService) { }
 
-  view: 'list' | 'plates'
+  constructor(private localStorageService: LocalStorageService, private filmsService: FilmsService, private router: Router) {
+  }
 
-  setViewMode(view) {
+  films: Film[]
+  favoritesFilms: Film[]
+  isFavorites: boolean = false
+
+  isModalaOpen: boolean = false
+
+  view: View = 'grid'
+
+  searchTerm: string = ''
+  sortingBy: string = 'date'
+  isReverseSorting: boolean = false
+
+  isEmpty: boolean
+
+  $favoritesFilms = this.filmsService.getFilms().pipe(
+    map((films: Film[]) => {
+      return films.filter(f => f.isFavorite)
+
+    })
+  )
+
+  setViewMode(view: View) {
     this.view = view
     this.localStorageService.setView(view)
   }
 
-  ngOnInit(): void {
-    this.view = this.localStorageService.getView()
-
+  addFilm(film: Film) {
+    this.filmsService.addFilm(film).subscribe(films => this.films = films)
+    this.closeModal()
   }
 
+  deleteFilm(key: string) {
+    this.filmsService.deleteFilm(key).subscribe(films => this.films = films)
+  }
+
+  toggleFavorite(key: string, isFav: boolean) {
+    this.filmsService.toggleFavorite(key, isFav).subscribe()
+  }
+
+  sortFilmsBy(value: string) {
+    this.sortingBy = value
+  }
+
+  toggleReverseSorting() {
+    this.isReverseSorting = !this.isReverseSorting
+  }
+
+  openModal() {
+    this.isModalaOpen = true
+  }
+
+  closeModal() {
+    this.isModalaOpen = false
+  }
+
+
+  ngOnInit(): void {
+    this.view = this.localStorageService.getView()
+    this.filmsService.getFilms().subscribe(films => this.films = films)
+
+    this.router.url === '/favorites' ? this.isFavorites = true : this.isFavorites = false
+  }
 }

@@ -1,9 +1,8 @@
-<div [ngClass]="{'dark' : darkTheme}" class="page-wrapper">
-  <app-header [dark]="darkTheme" (btnClick)="toggleTheme()"></app-header>
+<div [class]="{dark : isDarkTheme}" class="page-wrapper">
+  <app-header (toggleTheme)="toggleTheme()" [isDarkTheme]="isDarkTheme"></app-header>
   <div class="main">
-    <app-sidebar></app-sidebar>
     <div class="content">
-      <app-films></app-films>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

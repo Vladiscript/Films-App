@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { View } from '../Types';
 
 
 
@@ -9,18 +10,19 @@ export class LocalStorageService {
 
   constructor() { }
 
-  setTheme(theme) {
-    localStorage.setItem('darkTheme', JSON.stringify(theme))
+  setTheme(theme: boolean) {
+    localStorage.setItem('isDarkTheme', JSON.stringify(theme))
   }
   getTheme() {
-    const theme = localStorage.getItem('darkTheme')
+    const theme = localStorage.getItem('isDarkTheme') as string
     return JSON.parse(theme)
+
   }
-  setView(view) {
+  setView(view: View) {
     localStorage.setItem('view', JSON.stringify(view))
   }
   getView() {
-    const view = localStorage.getItem('view')
+    const view = localStorage.getItem('view') as string
     return JSON.parse(view)
   }
 }

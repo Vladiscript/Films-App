@@ -90,57 +90,64 @@ html,
 body {
     height: 100%;
 }
+.main {
+    max-width: 1350px;
+    padding: 0 15px;
+    margin: 0 auto;
+    min-height: 100vh;
 
+    .content {
+        background: #f6f8fa;
+        border: 1px solid #d8dee4;
+        min-height: 100vh;
+        height: 100%;
+    }
+}
+
+// DARK THEME ___________________________
 .page-wrapper {
+    position: relative;
     background: #fff;
     &.dark {
         background: #000;
         color: #c9d1d9;
+        .main {
+            .content {
+                background: #0d1117;
+                border-color: #21262d;
 
-        .sidebar {
-            background: #0d1117;
-            border: 1px solid #21262d;
-            .sidebar__search {
-                input {
-                    background: black;
-                    border: 1px solid #21262d;
+                .film__item {
+                    border-color: #21262d;
+                }
+                .film__img {
+                    border: 1px solid #c9d1d9;
+                }
+                .films {
+                    &__search input {
+                        background: #24292f;
+                    }
+                }
+                .app__toolbar {
+                    .toolbar__sorter {
+                        select {
+                            background: #24292f;
+                            // border-color: #d8dee4;
+                            color: #d8dee4;
+                        }
+                    }
                 }
             }
-            .sidebar__nav {
-                a {
-                    border-bottom: 1px solid #21262d;
-                    &.active {
-                        background: #000;
+
+            .modal {
+                &-body {
+                    background: #0d1117;
+                    input,
+                    textarea {
+                        background: #24292f;
+                        border-color: #d8dee4;
                     }
                 }
             }
         }
-        .main {
-            .content {
-                background: #000;
-                border-right: 1px solid #21262d;
-            }
-        }
-        .header {
-            .header__theme {
-                .theme-btn {
-                    background: #fff;
-                    color: #000;
-                }
-            }
-        }
-    }
-}
-.main {
-    display: flex;
-    max-width: 1350px;
-    padding: 0 15px;
-    margin: 0 auto;
-
-    .content {
-        background: #f6f8fa;
-        border-right: 1px solid #d8dee4;
-        width: 80%;
-        height: 100vh;
     }
 }

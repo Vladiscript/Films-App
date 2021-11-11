@@ -4,12 +4,22 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/512px-Angular_full_color_logo.svg.png"
                 alt="logo">
         </div>
-        <h1 class="header__title">
-            {{title}}
-        </h1>
+        <nav class="header__nav">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" href="#">All
+                Films</a>
+            <a routerLink="/favorites" routerLinkActive="active" href="#">Favorites
+                <fa-icon class="icon-star" [icon]="faStar"></fa-icon>
+            </a>
+        </nav>
         <div class="header__theme">
-            <span>Theme:</span>
-            <button (click)="onToggle()" class="theme-btn">{{dark ? 'Light': 'Dark'}}</button>
+            <button (click)="onToggle()" class="theme-btn">
+                <ng-container *ngIf="isDarkTheme; else light">
+                    <fa-icon [icon]="faSun"></fa-icon>
+                </ng-container>
+                <ng-template #light>
+                    <fa-icon [icon]="faMoon"></fa-icon>
+                </ng-template>
+            </button>
         </div>
     </div>
 </header>

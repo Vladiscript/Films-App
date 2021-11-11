@@ -28,12 +28,38 @@
         }
         .theme-btn {
             padding: 10px;
-            background: black;
             font-weight: 700;
             letter-spacing: 1px;
+            font-size: 18px;
             &:hover {
                 opacity: 0.7;
             }
         }
+    }
+    &__nav {
+        a {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            .icon-star {
+                position: absolute;
+                bottom: 20px;
+                right: -6px;
+                color: orange;
+            }
+            &.active {
+                border-bottom: 5px solid red;
+            }
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .header__logo {
+        display: none;
     }
 }

@@ -1,0 +1,121 @@
+.preview {
+    width: 100px;
+    height: 100px;
+}
+.form {
+    &-container {
+        margin: 0 auto;
+        width: 400px;
+        font-size: 18px;
+    }
+    &-control {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+
+        &.checkbox {
+            flex-direction: row;
+            align-items: center;
+            input {
+                margin: 0 10px;
+            }
+        }
+
+        label {
+            padding: 5px 0;
+        }
+        input,
+        textarea {
+            border: 1px solid #d8dee4;
+            padding: 10px;
+            &.invalid {
+                border-color: red;
+            }
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        &.image {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+    &-btn {
+        cursor: pointer;
+        padding: 10px;
+        background: #24292f;
+        color: #fff;
+        margin: 5px;
+        &:hover {
+            opacity: 0.7;
+        }
+        &:disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        &.submit {
+            width: 100%;
+        }
+    }
+    &-validate {
+        padding-top: 5px;
+        font-size: 14px;
+        color: red;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    &-body {
+        position: relative;
+        padding: 40px;
+        background: white;
+        width: 600px;
+        height: auto;
+        margin: 50px auto;
+        z-index: 1000;
+    }
+    &.open {
+        display: block;
+    }
+    &-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+}
+
+.preview {
+    &-image {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 200px;
+        height: 200px;
+        border: 1px solid #d8dee4;
+        img {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &-icon {
+        font-size: 50px;
+        color: #d8dee4;
+    }
+}

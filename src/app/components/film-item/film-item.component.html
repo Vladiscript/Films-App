@@ -1,0 +1,59 @@
+<ng-container *ngIf="viewMode === 'grid'; else listView">
+    <div class="film__item">
+        <div class="film__img">
+            <img [src]="film.image ? film.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_yoqlFzVjFrv303tJ2OlNjhMcgJ4G2_rOAg&usqp=CAU'"
+                alt="film">
+            <div class="film__favorites" (click)="film.isFavorite ? onToggleFavorite(false) : onToggleFavorite(true)">
+                <ng-container *ngIf="film.isFavorite; else noFav">
+                    <fa-icon [icon]="activeStar"></fa-icon>
+                </ng-container>
+                <ng-template #noFav>
+                    <fa-icon [icon]="star"></fa-icon>
+                </ng-template>
+            </div>
+
+        </div>
+        <h3 class="film__name">{{film.name}}</h3>
+        <div class="film__release">({{film.release}})</div>
+        <div class="film__delete">
+            <fa-icon (click)="onDelete()" class="film__close" [icon]="faTrashAlt"></fa-icon>
+        </div>
+    </div>
+</ng-container>
+<ng-template #listView>
+    <div class="film__item list">
+        <div class="film__img">
+            <img [src]="film.image" alt="film">
+            <div class="film__favorites" (click)="film.isFavorite ? onToggleFavorite(false) : onToggleFavorite(true)">
+                <ng-container *ngIf="film.isFavorite; else noFav">
+                    <fa-icon [icon]="activeStar"></fa-icon>
+                </ng-container>
+                <ng-template #noFav>
+                    <fa-icon [icon]="star"></fa-icon>
+                </ng-template>
+            </div>
+
+        </div>
+        <div class="film__content">
+            <div class="film__content-header">
+                <h3 class="film__name">{{film.name}}
+                    <span class="film__release">({{film.release}})</span>
+                </h3>
+                <div class="film__date">
+                    Added: {{film.date | date}}
+                </div>
+            </div>
+
+            <div class="film__description">
+                {{film.description}}
+            </div>
+            <div class="film__sales">
+                Box office: {{toConvert(film.boxOffice)}}
+            </div>
+
+        </div>
+        <div class="film__delete">
+            <fa-icon (click)="onDelete()" [icon]="faTrashAlt"></fa-icon>
+        </div>
+    </div>
+</ng-template>

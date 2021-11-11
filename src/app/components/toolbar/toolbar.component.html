@@ -1,0 +1,36 @@
+<div class="app__toolbar toolbar">
+
+    <div class="toolbar__add-film">
+        <button class="toolbar__btn add" (click)="onOpen()">Add Film</button>
+    </div>
+
+    <div class="toolbar__controls">
+
+        <div class="toolbar__sorter">
+            Sort By:
+            <select name="sorter" id="sorter" (change)="sortBy($event)">
+                <option class="select-option" selected value="date">Date</option>
+                <option class="select-option" value="name">Name</option>
+                <option class="select-option" value="release">Release</option>
+            </select>
+            <div class="sorter__arrow" [class]="{reverse: isReverseSorting}">
+                <fa-icon [icon]="faLongArrowAltUp" (click)="onToggle()">
+                </fa-icon>
+            </div>
+
+        </div>
+
+        <div class="toolbar__view">
+            <button class="toolbar__btn" (click)="setView('list')">
+                <fa-icon [icon]="faList"></fa-icon>
+            </button>
+            <button class="toolbar__btn" (click)="setView('grid')">
+                <fa-icon [icon]="faTh"></fa-icon>
+            </button>
+        </div>
+
+
+    </div>
+
+
+</div>
