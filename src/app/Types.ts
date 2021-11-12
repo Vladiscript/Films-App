@@ -1,5 +1,5 @@
 export interface Film {
-    key?: string
+    key?: undefined | string
     name: string,
     image: string,
     boxOffice: string,

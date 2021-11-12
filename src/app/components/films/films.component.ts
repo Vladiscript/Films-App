@@ -4,7 +4,7 @@ import { Film, View } from 'src/app/Types';
 import { FilmsService } from 'src/app/services/films.service';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-films',
@@ -13,14 +13,19 @@ import { filter, map, tap } from 'rxjs/operators';
 })
 export class FilmsComponent implements OnInit {
 
-
   constructor(private localStorageService: LocalStorageService, private filmsService: FilmsService, private router: Router) {
   }
 
-  films: Film[]
-  favoritesFilms: Film[]
-  isFavorites: boolean = false
+  films$: Observable<Film[]> = this.filmsService.getFilms()
 
+  favoritesFilms$: Observable<Film[]> = this.filmsService.getFilms().pipe(
+    map((films: Film[]) => {
+      return films.filter(f => f.isFavorite)
+    })
+  )
+
+
+  isFavorites: boolean = false
   isModalaOpen: boolean = false
 
   view: View = 'grid'
@@ -29,14 +34,6 @@ export class FilmsComponent implements OnInit {
   sortingBy: string = 'date'
   isReverseSorting: boolean = false
 
-  isEmpty: boolean
-
-  $favoritesFilms = this.filmsService.getFilms().pipe(
-    map((films: Film[]) => {
-      return films.filter(f => f.isFavorite)
-
-    })
-  )
 
   setViewMode(view: View) {
     this.view = view
@@ -44,12 +41,12 @@ export class FilmsComponent implements OnInit {
   }
 
   addFilm(film: Film) {
-    this.filmsService.addFilm(film).subscribe(films => this.films = films)
+    this.filmsService.addFilm(film).subscribe()
     this.closeModal()
   }
 
   deleteFilm(key: string) {
-    this.filmsService.deleteFilm(key).subscribe(films => this.films = films)
+    this.filmsService.deleteFilm(key).subscribe()
   }
 
   toggleFavorite(key: string, isFav: boolean) {
@@ -75,7 +72,7 @@ export class FilmsComponent implements OnInit {
 
   ngOnInit(): void {
     this.view = this.localStorageService.getView()
-    this.filmsService.getFilms().subscribe(films => this.films = films)
+    // this.filmsService.getFilms().subscribe(films => this.films = films)
 
     this.router.url === '/favorites' ? this.isFavorites = true : this.isFavorites = false
   }

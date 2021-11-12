@@ -30,7 +30,8 @@ export class FilmFormComponent implements OnInit {
     release: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
-      Validators.maxLength(4)
+      Validators.maxLength(4),
+      Validators.pattern('[0-9]+$')
     ]),
     boxOffice: new FormControl('', [
       Validators.required

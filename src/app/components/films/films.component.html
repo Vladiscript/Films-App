@@ -9,48 +9,45 @@
 
 
 <div class="films__container">
-    <!-- <div div class="films__items" [ngClass]="{'list': view === 'list'}"
-        *ngIf="isFavorites ? favoritesFilms: films;let films; else Preloader">
 
-        <app-film-item class="films__item" *ngFor="let film of films | sorting:sortingBy:isReverseSorting" [film]="film"
-            [viewMode]="view === 'list' ? 'list' : 'grid'" (onDeleteFilm)="deleteFilm(film.key)"
-            (toggleFavorite)="toggleFavorite(film.key, $event)">
-        </app-film-item>
-
-        <div *ngIf="isFavorites">
-            <div *ngIf="!favoritesFilms.length">Your list of favorites is empty</div>
-        </div>
-        <div *ngIf="!isFavorites">
-            <div *ngIf="!films.length">You don't have any films</div>
-        </div>
-
-    </div> -->
-
+    <!-- All Films -->
     <div class="films__all" *ngIf="!isFavorites">
-        <div class="films__items" [class]="{list: view === 'list'}" *ngIf="films; else Preloader">
+
+        <div class="films__items" [class]="{list: view === 'list'}" *ngIf="films$ |async;let films; else Preloader">
+
             <app-film-item class="films__item"
                 *ngFor="let film of films | filter:searchTerm | sorting:sortingBy:isReverseSorting" [film]="film"
                 [viewMode]="view === 'list' ? 'list' : 'grid'" (onDeleteFilm)="deleteFilm(film.key)"
                 (toggleFavorite)="toggleFavorite(film.key, $event)">
             </app-film-item>
+
             <div *ngIf="!films.length">You don't have any films</div>
+
         </div>
 
     </div>
-
+    <!-- Favorites Films -->
     <div class="films__favorites" *ngIf="isFavorites">
-        <div class="films__items" [class]="{list: view === 'list'}" *ngIf="films; else Preloader">
+
+        <div class="films__items" [class]="{list: view === 'list'}"
+            *ngIf="favoritesFilms$ | async;let favoritesFilms ; else Preloader">
+
             <app-film-item class="films__item"
-                *ngFor="let film of $favoritesFilms | async | filter:searchTerm | sorting:sortingBy:isReverseSorting"
+                *ngFor="let film of favoritesFilms | filter:searchTerm | sorting:sortingBy:isReverseSorting"
                 [film]="film" [viewMode]="view === 'list' ? 'list' : 'grid'" (onDeleteFilm)="deleteFilm(film.key)"
                 (toggleFavorite)="toggleFavorite(film.key, $event)">
             </app-film-item>
+
             <div *ngIf="!favoritesFilms.length">Your list of favorites is empty</div>
+
         </div>
+
     </div>
+
     <ng-template #Preloader>
         <app-preloader></app-preloader>
     </ng-template>
+
 </div>
 
 

@@ -10,8 +10,8 @@ export class SortPipe implements PipeTransform {
 
         const compareObjects = (object1: Film, object2: Film, key: string, toReverse?: boolean) => {
 
-            const obj1 = object1[key]
-            const obj2 = object2[key]
+            const obj1 = object1[key].toString().toLowerCase()
+            const obj2 = object2[key].toString().toLowerCase()
 
             if (obj1 < obj2) {
                 return toReverse ? 1 : -1

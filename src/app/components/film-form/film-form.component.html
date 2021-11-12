@@ -1,7 +1,9 @@
 <div [class]="{open: isModalOpen}" class="modal" data-close (click)="onClose($event)">
     <div class="modal-body">
         <div class="form-container">
+
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
                 <div class="form-control">
                     <label for="name">Film name</label>
                     <input [class]="{invalid: name.invalid && name.touched}" id="name" type="text"
@@ -10,6 +12,7 @@
                         Field is required
                     </div>
                 </div>
+
                 <div class="form-control image">
                     <label for="image">Set Baner</label>
                     <input id="image" type="file" formControlName="image" hidden (change)="onSelectImage($event)">
@@ -24,20 +27,22 @@
 
                 <div class="form-control">
                     <label for="release">Film Release</label>
-                    <input [class]="{invalid: release.invalid && release.touched}" id="release" type="number"
+                    <input [class]="{invalid: release.invalid && release.touched}" id="release" type="text"
                         formControlName="release">
                     <div class="form-validate" *ngIf="release.invalid && (release.dirty || release.touched)">
-                        Must be contained 4 characters
+                        Must be contained 4 numbers
                     </div>
                 </div>
+
                 <div class="form-control">
-                    <label for="sales">Sales Of Film</label>
-                    <input [class]="{invalid: boxOffice.invalid && boxOffice.touched}" id="sales" type="number"
+                    <label for="boxOffice">Box Office</label>
+                    <input [class]="{invalid: boxOffice.invalid && boxOffice.touched}" id="boxOffice" type="number"
                         formControlName="boxOffice">
                     <div class="form-validate" *ngIf="boxOffice.invalid && (boxOffice.dirty || boxOffice.touched)">
                         Field is required
                     </div>
                 </div>
+
                 <div class="form-control">
                     <label for="description">Film Description</label>
                     <textarea [class]="{invalid: description.invalid && description.touched}" id="description"
@@ -47,16 +52,20 @@
                         Max length is 1000 characters
                     </div>
                 </div>
+
                 <div class="form-control checkbox">
                     <label for="favorites">Add To Favorites?</label>
                     <input id="favorites" type="checkbox" formControlName="isFavorite">Yes
                 </div>
+
                 <button [disabled]="form.invalid" type="submit" class="form-btn submit">Save Film</button>
             </form>
+
             <div class="modal-buttons">
                 <button class="form-btn" data-close>Close</button>
                 <button class="form-btn" (click)="resetForm()">Reset</button>
             </div>
+
         </div>
     </div>
 </div>

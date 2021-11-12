@@ -1,6 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 

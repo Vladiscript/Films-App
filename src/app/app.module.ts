@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { environment } from 'src/environments/environment';
 import { HeaderComponent } from './components/header/header.component';
@@ -19,10 +20,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DatePipe } from '@angular/common';
 import { FilterPipe } from './filter.pipe';
 import { SortPipe } from './sort.pipe';
-import { registerLocaleData } from '@angular/common';
-import localRU from '@angular/common/locales/ru';
 import { PreloaderComponent } from './components/preloader/preloader.component'
-registerLocaleData(localRU, 'ru')
 
 @NgModule({
   declarations: [
@@ -45,6 +43,7 @@ registerLocaleData(localRU, 'ru')
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatInputModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [DatePipe],
